@@ -1,0 +1,17 @@
+[Unit]
+Description=Hack for qmi raw-ip modem
+Requires=systemd-networkd.socket
+After=systemd-networkd.socket
+
+#BindsTo=sys-subsystem-net-devices-wwan0.device
+#After=sys-subsystem-net-devices-wwan0.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/lib/systemd/systemd-networkd-wait-online --interface=wwan0
+ExecStart=/usr/bin/raw-ip-wwan0.sh
+
+[Install]
+WantedBy=multi-user.target
+

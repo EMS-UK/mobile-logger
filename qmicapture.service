@@ -1,0 +1,20 @@
+[Unit]
+Description=qmi radio capture
+#Requires=systemd-networkd.socket
+After=rawip.service
+
+#BindsTo=sys-subsystem-net-devices-wwan0.device
+#After=sys-subsystem-net-devices-wwan0.device
+
+[Service]
+Restart=always
+RestartSec=30s
+Type=idle
+User=pi
+WorkingDirectory=/home/pi
+#ExecStartPre=/usr/lib/systemd/systemd-networkd-wait-online --interface=wwan0
+ExecStart=/usr/bin/python /home/pi/mobile-logger/qmicapturegps.py >& /tmp/log
+
+[Install]
+WantedBy=multi-user.target
+

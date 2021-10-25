@@ -1,0 +1,22 @@
+#!/bin/sh
+export LC_ALL=C
+#	echo $(date) $2 $CONNECTIVITY_STATE >> /tmp/cs
+#echo "parse" >>/tmp/cs
+if [ "$2" = "connectivity-change" ]; then
+#	echo "connectivity change" >>/tmp/cs
+	if [ $CONNECTIVITY_STATE = "NONE" ]; then
+#		echo "flashstart" >>/tmp/cs
+		/home/pi/mobile-logger/flashservice &
+	fi
+	if [ $CONNECTIVITY_STATE = "FULL" ]; then
+#		echo "flashstop" >>/tmp/cs
+		killall flashservice
+		gpio -1 write 7 0
+	fi
+fi
+
+#if [ "$2" = "up" ]; then
+#	killall flashservice
+#fi
+
+exit 0

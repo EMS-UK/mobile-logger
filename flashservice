@@ -1,0 +1,4 @@
+#!/bin/bash
+gpio -1 mode 7 out
+while true; do gpio -1 write 7 0; sleep 1; gpio -1 write 7 1; sleep 1; done
+#i="0"; while [ $i -lt 10 ]; do gpio -1 write 7 0; sleep 1; gpio -1 write 7 1; sleep 1; i=$[$i+1]; done
