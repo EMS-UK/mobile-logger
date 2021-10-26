@@ -10,7 +10,7 @@ After=systemd-networkd.socket
 Type=oneshot
 RemainAfterExit=yes
 ExecStartPre=/usr/lib/systemd/systemd-networkd-wait-online --interface=wwan0
-ExecStart=/usr/bin/raw-ip-wwan0.sh
+ExecStart=/home/pi/mobile-logger/raw-ip-wwan0.sh
 
 [Install]
 WantedBy=multi-user.target
